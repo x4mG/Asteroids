@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public Text scoreText;
     public Text livesText;
+    public AudioSource explosionAudioSource;
 
     public void AsteroidDestroyed(Asteroid asteroid) {
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
+        explosionAudioSource.Play();
 
         if (asteroid.size < 0.75f) {
             this.score += 100;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDied() {
         this.explosion.transform.position = this.player.transform.position;
         this.explosion.Play();
+        explosionAudioSource.Play();
         
         this.lives--;
         livesText.text = lives.ToString();

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private bool _thrusting;
     private float _turnDirection;
+    public AudioSource shootAudioSource;
 
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
     private void Shoot() {
         Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
         bullet.Project(this.transform.up);
+        shootAudioSource.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
